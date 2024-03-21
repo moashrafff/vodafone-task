@@ -1,8 +1,8 @@
-package com.vikanshu.core_ui.di
+package com.example.core.di
 
 import android.content.Context
-import com.vikanshu.core_ui.ConnectivityObserver
-import com.vikanshu.core_ui.ConnectivityObserverImpl
+import com.example.core.ConnectivityObserver
+import com.example.core.ConnectivityObserverImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

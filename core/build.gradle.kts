@@ -44,6 +44,7 @@ dependencies {
     implementation(AndroidX.coreKtx)
 
     implementation(Hilt.hilt)
+    implementation(libs.play.services.location)
     kapt(Hilt.hiltAndroidCompiler)
     kapt(Hilt.hiltCompiler)
     implementation(AndroidX.workManagerKtx)

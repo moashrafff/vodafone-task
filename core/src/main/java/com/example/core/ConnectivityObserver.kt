@@ -1,4 +1,4 @@
-package com.vikanshu.core_ui
+package com.example.core
 
 import android.annotation.SuppressLint
 import android.content.Context
