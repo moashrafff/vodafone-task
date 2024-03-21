@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
+import com.example.home.screen.HomeScreen
 
 
 @Composable
@@ -27,18 +28,18 @@ fun AppNavigation(
     ) {
         composable(route = AppScreens.Home.action
         ) {
-//            HomeScreen(deviceSizeType = deviceSizeType,
-//                connectivityState = connectivityState,
-//                onSearch = {
-//                    navController.navigate(WeatherAppScreens.Search.route)
-//                }, onWeatherDetail = {
+            HomeScreen(deviceSizeType = deviceSizeType,
+                connectivityState = connectivityState,
+                onSearch = {
+                    navController.navigate(AppScreens.Search.action)
+                }, onWeatherDetail = {
 //                    navController.navigate(
-//                        WeatherAppScreens.Forecast.route.replace(
+//                        AppScreens.Forecast.route.replace(
 //                            "{name}",
 //                            it.location.name
 //                        )
 //                    )
-//                })
+                })
         }
         composable(route = AppScreens.Search.action) {
 //            SearchScreen(

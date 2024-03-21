@@ -12,7 +12,8 @@ interface WeatherService {
     suspend fun getCurrentWeather(
         @Query("lat") lat:Double,
         @Query("lon") lon:Double,
-        @Query("appid") apiKey: String = Constants.WEATHER_API_KEY
+        @Query("appid") apiKey: String = Constants.WEATHER_API_KEY,
+        @Query("units") units : String = Constants.METRIC_UNIT
     ) : CurrentWeatherDto?
 
     @GET(Constants.BASE_WEATHER_API_URL + EndPoints.SEARCH_LOCATION)

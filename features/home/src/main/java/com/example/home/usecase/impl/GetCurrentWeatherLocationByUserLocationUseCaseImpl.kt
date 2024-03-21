@@ -14,9 +14,9 @@ class GetCurrentWeatherLocationByUserLocationUseCaseImpl(
     private val weatherRepository: CurrentWeatherRepository
 ): GetCurrentWeatherLocationByUserLocationUseCase {
 
-    override suspend fun invoke(location: LocationModel): ResponseResult<CurrentWeatherModel> {
+    override suspend fun invoke(location: Location): ResponseResult<CurrentWeatherModel> {
         return withContext(ioDispatcher) {
-            weatherRepository.getCurrentWeather(lat = location.lat , lon = location.lon)
+            weatherRepository.getCurrentWeather(lat = location.latitude , lon = location.longitude)
         }
     }
 
