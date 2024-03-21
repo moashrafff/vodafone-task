@@ -2,6 +2,7 @@ package com.example.data.local.db
 
 import androidx.room.TypeConverter
 import com.example.data.model.CurrentWeatherModel
+import com.example.data.model.LocationModel
 
 class WeatherTypeConverter {
     @TypeConverter
@@ -45,5 +46,11 @@ class WeatherTypeConverter {
 
     @TypeConverter
     fun toWeather(json: String) = CurrentWeatherModel.Weather.fromJson(json)
+
+    @TypeConverter
+    fun fromLocation(location: LocationModel) = location.toJson()
+
+    @TypeConverter
+    fun toLocation(json: String) = LocationModel.fromJson(json)
 
 }

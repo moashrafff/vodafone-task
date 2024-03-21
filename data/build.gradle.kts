@@ -17,8 +17,8 @@ android {
 
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")
 
-//        buildConfigField("String", "API_KEY", "7ce5876ab51cd81e802d24301b72ffa0")
     }
 
     compileOptions {
@@ -36,6 +36,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")
+
         }
         release {
             isMinifyEnabled = true
@@ -43,7 +44,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")        }
+            buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")
+            
+        }
     }
     kotlin {
         jvmToolchain {
