@@ -27,7 +27,7 @@ data class CurrentWeatherModel(
     val sys: Sys,
     val timezone: Int,
     val visibility: Int,
-//    val weather: List<Weather>,
+    val weather: List<Weather>,
     val wind: Wind
 ) {
     fun toJson() = Gson().toJson(this)
@@ -173,23 +173,23 @@ data class CurrentWeatherModel(
 
     companion object {
         fun fromJson(json: String) = Gson().fromJson(json, CurrentWeatherModel::class.java)
-        fun CurrentWeatherDto.toCurrentWeatherModel(): CurrentWeatherModel = CurrentWeatherModel(
-            base = base.orEmpty(),
-            clouds = toCloudsModel(clouds),
-            cod = cod ?: 0,
-            coord = toCoordModel(coord),
-            dt = dt ?: 0,
-            id = id ?: 0,
-            main = toMainModel(main),
-            name = name.orEmpty(),
-            rain = toRainModel(rain),
-            sys = toSysModel(sys),
-            timezone = timezone ?: 0,
-            visibility = visibility ?: 0,
-//            weather = weather?.mapNotNull {
-//                it?.toWeatherModel()
-//            }.orEmpty(),
-            wind = toWindModel(wind)
+        fun toCurrentModel (dto : CurrentWeatherDto?): CurrentWeatherModel = CurrentWeatherModel(
+            base = dto?.base.orEmpty(),
+            clouds = toCloudsModel(dto?.clouds),
+            cod = dto?.cod ?: 0,
+            coord = toCoordModel(dto?.coord),
+            dt = dto?.dt ?: 0,
+            id = dto?.id ?: 0,
+            main = toMainModel(dto?.main),
+            name = dto?.name.orEmpty(),
+            rain = toRainModel(dto?.rain),
+            sys = toSysModel(dto?.sys),
+            timezone = dto?.timezone ?: 0,
+            visibility = dto?.visibility ?: 0,
+            weather = dto?.weather?.mapNotNull {
+                it?.toWeatherModel()
+            }.orEmpty(),
+            wind = toWindModel(dto?.wind)
         )
     }
 }
