@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
 import com.example.home.screen.HomeScreen
+import com.example.search.SearchScreen
 
 
 @Composable
@@ -42,10 +43,10 @@ fun AppNavigation(
                 })
         }
         composable(route = AppScreens.Search.action) {
-//            SearchScreen(
-//                deviceSizeType = deviceSizeType,
-//                connectivityState = connectivityState, onBack = navController::navigateUp
-//            )
+            SearchScreen(
+                deviceSizeType = deviceSizeType,
+                connectivityState = connectivityState, onBack = navController::navigateUp
+            )
         }
         composable(route = AppScreens.Details.action,
             arguments = listOf(
