@@ -1,4 +1,4 @@
-package com.vikanshu.core_ui
+package com.example.core
 
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass

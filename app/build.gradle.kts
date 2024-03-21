@@ -75,11 +75,11 @@ kapt {
 
 dependencies {
 
-//    implementation(project(":data"))
+    implementation(project(":data"))
 //    implementation(project(":utility"))
-//    implementation(project(":core-ui"))
+    implementation(project(":core"))
 //    implementation(project(":feature:search"))
-//    implementation(project(":feature:home"))
+    implementation(project(":features:home"))
 //    implementation(project(":feature:detail"))
 
     implementation(AndroidX.coreKtx)

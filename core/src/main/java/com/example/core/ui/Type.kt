@@ -1,4 +1,4 @@
-package com.vikanshu.core_ui.ui
+package com.example.core.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

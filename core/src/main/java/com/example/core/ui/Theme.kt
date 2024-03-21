@@ -1,4 +1,4 @@
-package com.vikanshu.core_ui.ui
+package com.example.core.ui
 
 import android.app.Activity
 import android.os.Build
