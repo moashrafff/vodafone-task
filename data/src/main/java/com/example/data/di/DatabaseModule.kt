@@ -3,6 +3,7 @@ package com.example.data.di
 import android.content.Context
 import androidx.room.Room
 import com.example.data.local.dao.CurrentWeatherDao
+import com.example.data.local.dao.ForecastModelDao
 import com.example.data.local.dao.LocationDao
 import com.example.data.local.db.WeatherDatabase
 import dagger.Module
@@ -35,5 +36,11 @@ class DatabaseModule {
     @Singleton
     fun providesLocationDao(weatherDatabase: WeatherDatabase): LocationDao {
         return weatherDatabase.locationDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providesForecastDao(weatherDatabase: WeatherDatabase): ForecastModelDao {
+        return weatherDatabase.forecastDao()
     }
 }

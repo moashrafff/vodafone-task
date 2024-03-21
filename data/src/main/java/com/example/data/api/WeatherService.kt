@@ -22,4 +22,12 @@ interface WeatherService {
         @Query("limit") limit: Int? = null,
         @Query("appid") apiKey: String = Constants.WEATHER_API_KEY
     ): List<LocationDto?>?
+
+    @GET(Constants.BASE_WEATHER_API_URL + EndPoints.FORECAST_DETAILS)
+    suspend fun getForecastDetails(
+        @Query("lat") lat:Double,
+        @Query("lon") lon:Double,
+        @Query("cnt") cnt:Int = 7,
+        @Query("appid") apiKey: String = Constants.WEATHER_API_KEY
+    )
 }

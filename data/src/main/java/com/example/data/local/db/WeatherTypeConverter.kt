@@ -2,6 +2,7 @@ package com.example.data.local.db
 
 import androidx.room.TypeConverter
 import com.example.data.model.CurrentWeatherModel
+import com.example.data.model.ForecastModel
 import com.example.data.model.LocationModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -63,5 +64,20 @@ class WeatherTypeConverter {
         val type = object : TypeToken<List<CurrentWeatherModel.Weather>>() {}.type
         return Gson().fromJson(json, type)
     }
+
+    @TypeConverter
+    fun fromForecastDays(days: List<ForecastModel.Days>) = Gson().toJson(days)
+
+    @TypeConverter
+    fun toForecastDays(json: String): List<ForecastModel.Days> {
+        val type = object : TypeToken<List<ForecastModel.Days>>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    @TypeConverter
+    fun fromLocation(city: ForecastModel.City) = city.toJson()
+
+    @TypeConverter
+    fun toCity(json: String) = ForecastModel.City.fromJson(json)
 
 }
