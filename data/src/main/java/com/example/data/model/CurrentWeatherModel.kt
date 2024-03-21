@@ -27,7 +27,7 @@ data class CurrentWeatherModel(
     val sys: Sys,
     val timezone: Int,
     val visibility: Int,
-//    val weather: List<Weather>,
+    val weather: List<Weather>,
     val wind: Wind
 ) {
     fun toJson() = Gson().toJson(this)
@@ -186,9 +186,9 @@ data class CurrentWeatherModel(
             sys = toSysModel(dto?.sys),
             timezone = dto?.timezone ?: 0,
             visibility = dto?.visibility ?: 0,
-//            weather = weather?.mapNotNull {
-//                it?.toWeatherModel()
-//            }.orEmpty(),
+            weather = dto?.weather?.mapNotNull {
+                it?.toWeatherModel()
+            }.orEmpty(),
             wind = toWindModel(dto?.wind)
         )
     }

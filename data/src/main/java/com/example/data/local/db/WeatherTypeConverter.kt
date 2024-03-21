@@ -3,6 +3,8 @@ package com.example.data.local.db
 import androidx.room.TypeConverter
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.LocationModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class WeatherTypeConverter {
     @TypeConverter
@@ -52,5 +54,14 @@ class WeatherTypeConverter {
 
     @TypeConverter
     fun toLocation(json: String) = LocationModel.fromJson(json)
+
+    @TypeConverter
+    fun fromWeather(weather: List<CurrentWeatherModel.Weather>) = Gson().toJson(weather)
+
+    @TypeConverter
+    fun toWeatherList(json: String): List<CurrentWeatherModel.Weather> {
+        val type = object : TypeToken<List<CurrentWeatherModel.Weather>>() {}.type
+        return Gson().fromJson(json, type)
+    }
 
 }
