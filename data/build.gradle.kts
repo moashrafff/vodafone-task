@@ -35,6 +35,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")
         }
         release {
             isMinifyEnabled = true
@@ -42,7 +43,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
+            buildConfigField("String", "WEATHER_API_KEY", "\"9106af6253f84b3ca35152852242003\"")        }
     }
     kotlin {
         jvmToolchain {
