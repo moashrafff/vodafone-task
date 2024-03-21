@@ -3,8 +3,11 @@ package com.example.data.di
 import android.content.Context
 import com.example.data.api.WeatherService
 import com.example.data.local.dao.CurrentWeatherDao
+import com.example.data.local.dao.LocationDao
 import com.example.data.repos.CurrentWeatherRepository
+import com.example.data.repos.LocationRepository
 import com.example.data.repos.impl.CurrentWeatherRepositoryImpl
+import com.example.data.repos.impl.LocationRepositoryImpl
 import com.example.data.resource.Constants
 import dagger.Module
 import dagger.Provides
@@ -53,8 +56,18 @@ class RemoteModule {
     fun providesWeatherRepository(
         @Named("io") ioDispatcher: CoroutineDispatcher,
         weatherDao: CurrentWeatherDao,
-        weatherApi: WeatherService
+        weatherService: WeatherService
     ): CurrentWeatherRepository {
-        return CurrentWeatherRepositoryImpl(ioDispatcher, weatherDao, weatherApi)
+        return CurrentWeatherRepositoryImpl(ioDispatcher, weatherDao, weatherService)
+    }
+
+    @Provides
+    @Singleton
+    fun providesLocationRepository(
+        @Named("io") ioDispatcher: CoroutineDispatcher,
+        locationDao: LocationDao,
+        weatherService: WeatherService
+    ): LocationRepository {
+        return LocationRepositoryImpl(ioDispatcher, locationDao, weatherService)
     }
 }
