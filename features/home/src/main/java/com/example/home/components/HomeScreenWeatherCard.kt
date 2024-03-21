@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -22,11 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.core.ui.SfDisplayProFontFamily
+import com.example.core.ui.color0076FF
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.LocationModel
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,13 +53,28 @@ fun HomeScreenWeatherCard(
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Spacer(modifier = Modifier.width(8.dp))
-            AsyncImage(
-                modifier = Modifier.size(32.dp),
-                model = currentWeather?.weather?.firstOrNull()?.icon,
-                contentDescription = ""
+            Text(
+                currentWeather?.weather?.firstOrNull()?.description ?: "--",
+                fontFamily = SfDisplayProFontFamily,
+                fontWeight = FontWeight.Bold,
+                fontSize = 17.sp,
+                color = Color.Black.copy(alpha = 0.65f)
             )
             Spacer(modifier = Modifier.weight(1f))
+
+            val dateFormat = SimpleDateFormat("hh:mm aa")
+            val currentTime = Date()
+            val formattedTime = dateFormat.format(currentTime)
+
+            Text(
+                formattedTime,
+                modifier = Modifier.padding(start = 32.dp),
+                textAlign = TextAlign.End,
+                fontFamily = SfDisplayProFontFamily,
+                fontWeight = FontWeight.Bold,
+                fontSize = 17.sp,
+                color = color0076FF
+            )
         }
         Spacer(modifier = Modifier.height(18.dp))
         Text(
