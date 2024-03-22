@@ -1,6 +1,7 @@
 package com.example.data.api
 
 import com.example.data.dto.CurrentWeatherDto
+import com.example.data.dto.ForecastDto
 import com.example.data.dto.LocationDto
 import com.example.data.resource.Constants
 import com.example.data.resource.EndPoints
@@ -29,5 +30,5 @@ interface WeatherService {
         @Query("lon") lon:Double,
         @Query("cnt") cnt:Int = 7,
         @Query("appid") apiKey: String = Constants.WEATHER_API_KEY
-    )
+    ) : ForecastDto
 }

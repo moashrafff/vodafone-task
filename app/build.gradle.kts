@@ -79,8 +79,8 @@ dependencies {
 //    implementation(project(":utility"))
     implementation(project(":core"))
     implementation(project(":features:home"))
-//    implementation(project(":feature:detail"))
     implementation(project(":features:search"))
+    implementation(project(":features:forecast"))
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)
