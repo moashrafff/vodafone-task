@@ -43,6 +43,8 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":core"))
+    implementation(project(":WeatherLib"))
+
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)

@@ -1,5 +1,6 @@
 package com.example.forecast.screen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repos.CurrentWeatherRepository
@@ -11,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -70,11 +73,11 @@ class DetailsViewModel @Inject constructor(
                     currentWeather = uiState.value.currentWeather
                 )
             )
-
-            val currentWeather = weatherRepository.getWeatherFromDB(name)
-
             val lat = separateLatLongFromString(name)?.first ?: 0.0
             val lon = separateLatLongFromString(name)?.second ?: 0.0
+
+            val currentWeather = weatherRepository.getWeatherFromDB("${lat},${lon}")
+            Log.e("TAG103", "fetchForecastData: " + currentWeather )
 
             getForecastDetailsUseCase.invoke(lat,lon,cityId).map {
                 ForecastState(

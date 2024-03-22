@@ -4,6 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.data.dto.ForecastDto
 import com.google.gson.Gson
+import java.util.Calendar
+import java.util.Date
 
 @Entity
 data class ForecastModel(
@@ -59,7 +61,7 @@ data class ForecastModel(
     data class Days(
         val clouds: Int,
         val deg: Int,
-        val dt: Int,
+        val dt: String,
         val feelsLike: FeelsLike,
         val gust: Double,
         val humidity: Int,
@@ -125,11 +127,23 @@ data class ForecastModel(
         }
 
         companion object {
+            fun unixTimestampToDate(unixTimestamp: Long): Date {
+                return Date(unixTimestamp * 1000) // Multiply by 1000 to convert seconds to milliseconds
+            }
+
+            // Function to get the day name from a date
+            fun getDayName(date: Date): String {
+                val days = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+                val calendar = Calendar.getInstance()
+                calendar.time = date
+                val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+                return days[dayOfWeek - 1]
+            }
             fun toDayModel(dtoModel: ForecastDto.Days?): Days = Days(
                 clouds = dtoModel?.clouds ?:0,
                 deg = dtoModel?.deg ?:0,
-                dt = dtoModel?.dt ?:0,
-                feelsLike = FeelsLike.toFeelsLikeModel(dtoModel?.feelsLike),
+                dt = getDayName(unixTimestampToDate(dtoModel?.dt?.toLong()!!)),
+                feelsLike = FeelsLike.toFeelsLikeModel(dtoModel.feelsLike),
                 gust = dtoModel?.gust ?: 0.0 ,
                 humidity = dtoModel?.humidity ?:0 ,
                 pop = dtoModel?.pop ?:0.0,

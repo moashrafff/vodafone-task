@@ -48,17 +48,25 @@ fun ForecastDetailMoreInfo(
                 modifier = Modifier.weight(1f),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-//                ForecastDetailInfoCardItem(
-//                    title = "Humidity",
-//                    icon = painterResource(id = R.drawable.rain),
-//                    value = "${currentWeather.main.humidity}%",
-//                    valueColor = color0076FF
-//                )
+                ForecastDetailInfoCardItem(
+                    title = "Humidity",
+                    icon = painterResource(id = R.drawable.ic_weather_drop),
+                    value = "${currentWeather.main.humidity}%",
+                    valueColor = color0076FF
+                )
                 Spacer(modifier = Modifier.height(36.dp))
                 ForecastDetailInfoCardItem(
                     title = "Wind",
                     icon = null,
                     value = "${currentWeather.wind.deg} ${currentWeather.wind.speed.roundToInt()} mph",
+                    valueColor = color0076FF
+                )
+                Spacer(modifier = Modifier.height(36.dp))
+
+                ForecastDetailInfoCardItem(
+                    title = "Sea Level",
+                    icon = null,
+                    value = "${currentWeather.main.seaLevel}",
                     valueColor = color0076FF
                 )
             }
@@ -67,12 +75,12 @@ fun ForecastDetailMoreInfo(
                 modifier = Modifier.weight(1f),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-//                ForecastDetailInfoCardItem(
-//                    title = "Feels Like",
-//                    icon = painterResource(id = R.drawable.few_clouds),
-//                    value = "${currentWeather.main.temp}°C",
-//                    valueColor = color0076FF
-//                )
+                ForecastDetailInfoCardItem(
+                    title = "Feels Like",
+                    icon = painterResource(id = R.drawable.ic_weather_feels_like),
+                    value = "${currentWeather.main.temp}°C",
+                    valueColor = color0076FF
+                )
                 Spacer(modifier = Modifier.height(36.dp))
                 ForecastDetailInfoCardItem(
                     title = "Visibility",

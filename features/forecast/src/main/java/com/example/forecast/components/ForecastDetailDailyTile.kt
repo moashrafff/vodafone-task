@@ -23,6 +23,9 @@ import coil.compose.AsyncImage
 import com.example.core.ui.SfDisplayProFontFamily
 import com.example.core.ui.color7F7F7F
 import com.example.data.model.ForecastModel
+import com.example.weatherlib.provideIconSrc
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Composable
 fun ForecastDetailDailyTile(
@@ -44,11 +47,19 @@ fun ForecastDetailDailyTile(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Spacer(modifier = Modifier.width(35.dp))
+                Text(
+                    forecastDay.dt,
+                    fontFamily = SfDisplayProFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = color7F7F7F
+                )
 
                 Spacer(modifier = Modifier.weight(1f))
                 AsyncImage(
-                    modifier = Modifier.size(32.dp),
-                    model = forecastDay.weather.firstOrNull()?.icon,
+                    modifier = Modifier.size(18.dp),
+                    model = forecastDay.weather.firstOrNull()?.icon.provideIconSrc(),
                     contentDescription = ""
                 )
                 Spacer(modifier = Modifier.width(13.dp))
