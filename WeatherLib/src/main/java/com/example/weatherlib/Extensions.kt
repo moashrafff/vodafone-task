@@ -1,7 +1,5 @@
 package com.example.weatherlib
-
-import androidx.annotation.DrawableRes
-import com.example.vodafone_task.R
+import com.weather.task.R
 
 fun String?.provideIconSrc() :Int {
       return when (this) {
