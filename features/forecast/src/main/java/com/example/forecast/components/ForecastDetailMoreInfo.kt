@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.example.core.ui.SfDisplayProFontFamily
 import com.example.core.ui.color0076FF
 import com.example.data.model.CurrentWeatherModel
-import com.example.vodafone_task.R
+import com.example.weather_task.R
 import kotlin.math.roundToInt
 
 @Composable

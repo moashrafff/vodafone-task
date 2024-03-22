@@ -1,6 +1,6 @@
 package com.example.data.resource
 
-import com.example.vodafone_task.BuildConfig
+import com.example.weather_task.BuildConfig
 
 
 object Constants {
