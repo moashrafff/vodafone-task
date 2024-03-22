@@ -1,10 +1,13 @@
 package com.example.home.components
 
+import android.util.Log
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -17,14 +20,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.core.ui.SfDisplayProFontFamily
 import com.example.core.ui.color0076FF
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.LocationModel
+import com.example.vodafone_task.R
+import com.example.weatherlib.provideIconSrc
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,6 +68,12 @@ fun HomeScreenWeatherCard(
                 fontWeight = FontWeight.Bold,
                 fontSize = 17.sp,
                 color = Color.Black.copy(alpha = 0.65f)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Icon(
+                modifier = Modifier.size(20.dp),
+                painter = painterResource(id = currentWeather?.weather?.firstOrNull()?.icon?.provideIconSrc() ?: R.drawable.clear_sky),
+                contentDescription = ""
             )
             Spacer(modifier = Modifier.weight(1f))
 

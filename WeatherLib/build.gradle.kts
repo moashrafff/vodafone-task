@@ -41,28 +41,13 @@ kapt {
 
 dependencies {
 
-    implementation(project(":data"))
-    implementation(project(":core"))
-    implementation(project(":WeatherLib"))
-
     implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleRuntimeKtx)
-
-    implementation(Kotlin.coroutines)
-    implementation(Kotlin.coroutinesAndroid)
 
     implementation(Hilt.hilt)
-    implementation(Hilt.hiltNavigationCompose)
+    implementation(libs.play.services.location)
     kapt(Hilt.hiltAndroidCompiler)
     kapt(Hilt.hiltCompiler)
     implementation(AndroidX.workManagerKtx)
-
-    implementation(Google.gson)
-
-    implementation(AndroidX.activityCompose)
-
-    implementation(Coil.coilCompose)
-    implementation(Coil.coilSvgCompose)
 
     implementation(platform(Compose.composeBom))
     implementation(Compose.composeUi)
