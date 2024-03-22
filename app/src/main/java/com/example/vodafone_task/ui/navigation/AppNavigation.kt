@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
+import com.example.forecast.screen.DetailScreen
 import com.example.home.screen.HomeScreen
 import com.example.search.SearchScreen
 
@@ -34,12 +35,12 @@ fun AppNavigation(
                 onSearch = {
                     navController.navigate(AppScreens.Search.action)
                 }, onWeatherDetail = {
-//                    navController.navigate(
-//                        AppScreens.Forecast.route.replace(
-//                            "{name}",
-//                            it.location.name
-//                        )
-//                    )
+                    navController.navigate(
+                        AppScreens.Details.action.replace(
+                            "{name}",
+                            "${it.coord.lat},${it.coord.lon}"
+                        )
+                    )
                 })
         }
         composable(route = AppScreens.Search.action) {
@@ -58,12 +59,12 @@ fun AppNavigation(
             )
         ) {
             val name = it.arguments?.getString("name") ?: ""
-//            DetailScreen(
-//                name = name,
-//                deviceSizeType = deviceSizeType,
-//                connectivityState = connectivityState,
-//                onBack = navController::navigateUp
-//            )
+            DetailScreen(
+                name = name,
+                deviceSizeType = deviceSizeType,
+                connectivityState = connectivityState,
+                onBack = navController::navigateUp
+            )
         }
     }
 }
