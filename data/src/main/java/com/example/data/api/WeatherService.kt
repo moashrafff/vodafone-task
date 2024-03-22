@@ -29,6 +29,7 @@ interface WeatherService {
         @Query("lat") lat:Double,
         @Query("lon") lon:Double,
         @Query("cnt") cnt:Int = 7,
-        @Query("appid") apiKey: String = Constants.WEATHER_API_KEY
+        @Query("appid") apiKey: String = Constants.WEATHER_API_KEY,
+        @Query("units") units : String = Constants.METRIC_UNIT
     ) : ForecastDto
 }

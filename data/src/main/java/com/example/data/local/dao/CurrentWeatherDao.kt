@@ -17,7 +17,7 @@ interface CurrentWeatherDao {
     @Query("SELECT * FROM CurrentWeatherModel")
     suspend fun getAllSavedWeather(): List<CurrentWeatherModel>
 
-    @Query("SELECT * FROM CurrentWeatherModel WHERE id=:name LIMIT 1")
+    @Query("SELECT * FROM CurrentWeatherModel WHERE locName=:name LIMIT 1")
 
     suspend fun getSavedWeatherByName(name: String): CurrentWeatherModel?
     @Query("SELECT * FROM CurrentWeatherModel WHERE id IN (:name)")

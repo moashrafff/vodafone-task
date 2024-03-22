@@ -1,12 +1,14 @@
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("maven-publish")
 }
 
 android {
-    namespace = "com.example.vodafone_task"
+    namespace = "com.weather.task"
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {
@@ -58,4 +60,37 @@ dependencies {
     implementation(Compose.composeMaterial3WindowSize)
     implementation(Compose.composeRuntimeLivedata)
     implementation(Compose.viewModelCompose)
+    implementation(kotlin("script-runtime"))
+}
+
+
+val sourcesJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(android.sourceSets.getByName("main").java.srcDirs)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            val release by publications.registering(MavenPublication::class) {
+                from(components["release"])
+                artifact(sourcesJar.get())
+                artifactId = "lib1"
+                groupId = "com.weather.task"
+                version = "1.0.2"
+            }
+        }
+    }
+}
+
+
+tasks.withType<Test> {
+    useJUnit()
+    testLogging {
+        events("standardOut", "started", "passed", "skipped", "failed")
+        showStandardStreams = true
+        /*  outputs.upToDateWhen {
+            false
+          }*/
+    }
 }

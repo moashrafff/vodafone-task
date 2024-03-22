@@ -1,4 +1,4 @@
-package com.example.vodafone_task
+package com.example.weather_task
 
 import org.junit.Test
 

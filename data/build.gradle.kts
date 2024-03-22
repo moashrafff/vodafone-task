@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vodafone_task"
+    namespace = "com.example.weather_task"
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {

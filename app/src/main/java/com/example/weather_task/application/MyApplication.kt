@@ -1,11 +1,10 @@
-package com.example.vodafone_task.application
+package com.example.weather_task.application
 
 import android.Manifest
 import android.app.Application
 import android.content.pm.PackageManager
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import androidx.work.WorkManager
 import com.example.core.LocationHandler
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject

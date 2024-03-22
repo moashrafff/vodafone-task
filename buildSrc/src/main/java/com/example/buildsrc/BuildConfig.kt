@@ -3,7 +3,7 @@ import org.gradle.api.JavaVersion
 object BuildConfig {
     const val compileSdk = 34
     const val targetSdk = 34
-    const val applicationId = "com.example.vodafone_task"
+    const val applicationId = "com.example.weather_task"
     const val minSdk = 24
     const val versionCode = 1
     const val versionName = "1.0"

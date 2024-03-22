@@ -1,4 +1,4 @@
-package com.example.vodafone_task.di
+package com.example.weather_task.di
 
 import dagger.Module
 import dagger.Provides

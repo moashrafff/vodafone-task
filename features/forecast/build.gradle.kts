@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vodafone_task"
+    namespace = "com.example.weather_task"
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {
@@ -43,6 +43,8 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":core"))
+    implementation(project(":WeatherLib"))
+
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)

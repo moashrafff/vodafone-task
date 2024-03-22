@@ -23,6 +23,7 @@ import com.example.core.ui.SfDisplayProFontFamily
 import com.example.core.ui.color0076FF
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.ForecastModel
+import com.example.weatherlib.provideIconSrc
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -53,8 +54,8 @@ fun ForecastDetailScreenWeatherCard(
             )
             Spacer(modifier = Modifier.width(8.dp))
             AsyncImage(
-                modifier = Modifier.size(32.dp),
-                model = forecast?.list?.firstOrNull()?.weather?.firstOrNull()?.icon,
+                modifier = Modifier.size(24.dp),
+                model = forecast?.list?.firstOrNull()?.weather?.firstOrNull()?.icon.provideIconSrc(),
                 contentDescription = ""
             )
             Spacer(modifier = Modifier.weight(1f))

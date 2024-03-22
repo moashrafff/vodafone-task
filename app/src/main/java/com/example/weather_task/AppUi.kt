@@ -1,4 +1,4 @@
-package com.example.vodafone_task
+package com.example.weather_task
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import com.example.vodafone_task.ui.navigation.AppNavigation
+import com.example.weather_task.ui.navigation.AppNavigation
 import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
 import com.example.core.components.NetworkNotAvailableTile
