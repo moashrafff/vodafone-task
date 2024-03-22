@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "vodafone-task"
+rootProject.name = "weather-task"
 include(":app")
 include(":core")
 include(":data")

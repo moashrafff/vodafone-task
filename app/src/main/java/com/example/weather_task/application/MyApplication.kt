@@ -1,4 +1,4 @@
-package com.example.vodafone_task.application
+package com.example.weather_task.application
 
 import android.Manifest
 import android.app.Application

@@ -1,4 +1,4 @@
-package com.example.vodafone_task.ui.navigation
+package com.example.weather_task.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

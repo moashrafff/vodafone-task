@@ -1,4 +1,4 @@
-package com.example.vodafone_task.ui.activity
+package com.example.weather_task.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
 import com.example.core.ui.WeatherTheme
-import com.example.vodafone_task.WeatherApp
+import com.example.weather_task.WeatherApp
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
