@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.weather_task"
+    namespace = "com.example.weather_task.search"
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {

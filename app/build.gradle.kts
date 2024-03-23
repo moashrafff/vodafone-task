@@ -76,7 +76,6 @@ kapt {
 dependencies {
 
     implementation(project(":data"))
-//    implementation(project(":utility"))
     implementation(project(":core"))
     implementation(project(":features:home"))
     implementation(project(":features:search"))

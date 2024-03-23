@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.weather_task"
+    namespace = "com.example.weather_task.data"
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {
