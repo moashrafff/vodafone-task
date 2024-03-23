@@ -17,21 +17,23 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    primary = ThemeColors.Day.surafce,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    background = ThemeColors.Night.bacground
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = colorA6A6A6,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
+    background = ThemeColors.Day.bacground
 )
 
 @Composable
 fun WeatherTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
+    // Dynamic color is available on Android 12+2
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {

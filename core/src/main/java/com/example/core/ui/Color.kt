@@ -2,6 +2,28 @@ package com.example.core.ui
 
 import androidx.compose.ui.graphics.Color
 
+
+sealed class ThemeColors(
+    val bacground: Color,
+    val surafce: Color,
+    val primary: Color,
+    val text: Color
+)  {
+    object Night: ThemeColors(
+        bacground = colorA6A6A6,
+        surafce = Color.White,
+        primary = Color.White,
+        text = colorA6A6A6
+    )
+    object Day: ThemeColors(
+        bacground = Color.White,
+        surafce = colorA6A6A6,
+        primary = colorA6A6A6,
+        text = Color.Black
+    )
+}
+
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

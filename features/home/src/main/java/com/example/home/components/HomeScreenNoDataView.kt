@@ -1,5 +1,6 @@
 package com.example.home.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +26,7 @@ import com.example.core.ui.colorA6A6A6
 fun HomeScreenNoDataView(
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -32,7 +34,7 @@ fun HomeScreenNoDataView(
             modifier = Modifier.size(80.dp),
             imageVector = Icons.Rounded.AddCircle,
             contentDescription = "",
-            tint = colorA6A6A6
+            tint = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
@@ -41,7 +43,7 @@ fun HomeScreenNoDataView(
             textAlign = TextAlign.Center,
             fontFamily = SfDisplayProFontFamily,
             fontSize = 18.sp,
-            color = colorA6A6A6
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }
