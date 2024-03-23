@@ -49,12 +49,12 @@ fun AppNavigation(
                 connectivityState = connectivityState,
                 onBack = navController::navigateUp,
                 onWeatherDetail = {
-                    navController.navigate(
-                        AppScreens.Details.action.replace(
-                            "{name}",
-                            it
-                        )
-                    )
+//                    navController.navigate(
+//                        AppScreens.Details.action.replace(
+//                            "{name}",
+//                            it
+//                        )
+//                    )
                 }
             )
         }

@@ -17,7 +17,7 @@ interface LocationDao {
     @Query("SELECT * FROM LocationModel")
     suspend fun getAllLocalLocations(): List<LocationModel>
 
-    @Query("SELECT * FROM LocationModel where name=:name LIMIT 1")
+    @Query("SELECT * FROM LocationModel where locName=:name LIMIT 1")
     suspend fun getLocalLocationByName(name: String): LocationModel
 
     @Update

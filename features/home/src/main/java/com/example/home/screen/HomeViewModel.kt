@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
 
 
     fun init() {
-        Log.e("TAG102", "loadData: " + userLocation )
+        Log.e("TAG102", "loadData: " + userLocation)
         loadData()
     }
 
@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(
                     isLoading = true,
                     message = if (uiState.value.weather.isEmpty()) "Loading..." else "",
                     showGpsDialog = uiState.value.showGpsDialog,
-                    weather = uiState.value.weather.distinctBy { it.location.name }
+                    weather = uiState.value.weather.distinctBy { it.location.locName }
                         .sortedBy { it.location.name }
                 )
             )
@@ -66,21 +66,24 @@ class HomeViewModel @Inject constructor(
             if (userLocation != null) {
 
                 val result = getCurrentWeatherLocationByUserLocationUseCase.invoke(userLocation!!)
-                Log.e("TAG102", "loadData: " + result )
+                Log.e("TAG102", "loadData: " + result)
 
                 if (result is ResponseResult.Success) {
 
                     val location = result.data.coord
                     userCurrentLocationInfo = LocationModel(
-                        name = result.data.name + " , " + result.data.sys.country ,
-                         country = "",
-                     lat = location.lat,
-                     lon = location.lon,
-                     state = "")
+                        name = result.data.name,
+                        country = result.data.sys.country,
+                        lat = location.lat,
+                        lon = location.lon,
+                        state = "",
+                        locName = "${location.lat},${location.lon}"
+                    )
 
                     val newList = listOf(
                         HomeState.WeatherCardState(
-                            location = userCurrentLocationInfo!!.copy().apply { isUserCurrentLocation = true },
+                            location = userCurrentLocationInfo!!.copy()
+                                .apply { isUserCurrentLocation = true },
                             weather = result.data
                         )
                     ) + uiState.value.weather
@@ -98,8 +101,8 @@ class HomeViewModel @Inject constructor(
             }
             savedLocations = locationRepository.getLocalLocations().toMutableList().apply {
                 if (userCurrentLocationInfo != null) {
-                    removeIf { loc ->
-                        userCurrentLocationInfo!!.name == loc.name
+                    removeIf { location ->
+                        userCurrentLocationInfo!!.locName == location.locName
                     }
                 }
             }
@@ -114,7 +117,7 @@ class HomeViewModel @Inject constructor(
                                 location = w.key,
                                 weather = w.value
                             )
-                        } + uiState.value.weather).distinctBy { it.location.name }
+                        } + uiState.value.weather).distinctBy { it.location.locName }.toSet()
                             .sortedBy { it.location.name }
 
                         is ResponseResult.Success -> (res.data.map { w ->

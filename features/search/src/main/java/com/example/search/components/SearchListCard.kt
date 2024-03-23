@@ -41,10 +41,8 @@ fun SearchListCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         onClick = {
             location.let {
-                GlobalScope.launch {
-                    onAdd.invoke()
-                    onWeatherDetail.invoke("${it.lat},${it.lon}")
-                }
+//                    onAdd.invoke()
+//                    onWeatherDetail.invoke("${it.lat},${it.lon}")
             }
         }
     ) {

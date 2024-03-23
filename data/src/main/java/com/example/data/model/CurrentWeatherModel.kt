@@ -31,6 +31,7 @@ data class CurrentWeatherModel(
     val wind: Wind,
     val locName: String,
 
+
 ) {
     fun toJson() = Gson().toJson(this)
     data class Clouds(

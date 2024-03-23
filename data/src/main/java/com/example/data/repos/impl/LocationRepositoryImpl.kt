@@ -31,6 +31,7 @@ class LocationRepositoryImpl(
                         lat = res?.lat ?: 0.0,
                         lon = res?.lon ?: 0.0,
                         state = res?.state.orEmpty(),
+                        locName = "${res?.lat},${res?.lon}"
                     )
                 }
             }, isValidResponse = {

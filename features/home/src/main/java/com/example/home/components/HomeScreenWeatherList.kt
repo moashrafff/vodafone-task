@@ -40,7 +40,7 @@ private fun HomeScreenVerticalWeatherList(
 ) {
     LazyColumn(modifier = modifier) {
         items(count = data.size, key = {
-            "${data[it].location.lat},${data[it].location.lat},${data[it].location.name}"
+            "${data[it].location.lat},${data[it].location.lon},${data[it].location.locName}"
         }) {
             Spacer(modifier = Modifier.height(4.dp))
             HomeScreenWeatherCard(

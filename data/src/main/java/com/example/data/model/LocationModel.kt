@@ -13,7 +13,8 @@ data class LocationModel(
     val country: String,
     val lat: Double,
     val lon: Double,
-    val state: String
+    val state: String,
+    val locName : String
 ){
     @Ignore
     var isUserCurrentLocation: Boolean = false
@@ -32,7 +33,8 @@ data class LocationModel(
                 country = dto?.country.orEmpty(),
                 lat = dto?.lat ?: 0.0,
                 lon = dto?.lon ?: 0.0,
-                state = dto?.state.orEmpty()
+                state = dto?.state.orEmpty(),
+                locName = "${dto?.lat},${dto?.lon}"
             )
 
     }

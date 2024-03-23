@@ -16,7 +16,7 @@ class GetCurrentWeatherLocationByUserLocationUseCaseImpl(
 
     override suspend fun invoke(location: Location): ResponseResult<CurrentWeatherModel> {
         return withContext(ioDispatcher) {
-            weatherRepository.getCurrentWeather(lat = location.latitude , lon = location.longitude, shouldSaveLocally = false)
+            weatherRepository.getCurrentWeather(lat = location.latitude , lon = location.longitude, shouldSaveLocally = true)
         }
     }
 
