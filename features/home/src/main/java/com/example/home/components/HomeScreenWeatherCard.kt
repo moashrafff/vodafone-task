@@ -27,7 +27,7 @@ import com.example.core.ui.SfDisplayProFontFamily
 import com.example.core.ui.color0076FF
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.LocationModel
-import com.example.weather_task.R
+import com.example.weather_task.home.R
 import com.example.weatherlib.provideIconSrc
 import java.text.SimpleDateFormat
 import java.util.Date
