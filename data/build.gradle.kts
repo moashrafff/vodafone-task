@@ -17,7 +17,6 @@ android {
 
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
-        buildConfigField("String", "WEATHER_API_KEY", "\"172e14a89b54196b0cb3f112ec94fbe9\"")
 
     }
 
@@ -45,7 +44,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "WEATHER_API_KEY", "\"172e14a89b54196b0cb3f112ec94fbe9\"")
-            
+
         }
     }
     kotlin {
