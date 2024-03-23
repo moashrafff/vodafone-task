@@ -1,5 +1,6 @@
 package com.example.forecast.di
 
+import com.example.data.repos.CurrentWeatherRepository
 import com.example.data.repos.ForeCastRepository
 import com.example.forecast.usecase.GetForecastUseCase
 import com.example.forecast.usecase.impl.GetForecastDetailsUseCaseImpl
@@ -22,6 +23,5 @@ class DetailModule {
         forecastRepository: ForeCastRepository
     ): GetForecastUseCase =
          GetForecastDetailsUseCaseImpl(ioDispatcher, forecastRepository)
-
 
 }

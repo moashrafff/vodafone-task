@@ -77,7 +77,6 @@ class DetailsViewModel @Inject constructor(
             val lon = separateLatLongFromString(name)?.second ?: 0.0
 
             val currentWeather = weatherRepository.getWeatherFromDB("${lat},${lon}")
-            Log.e("TAG103", "fetchForecastData: " + currentWeather )
 
             getForecastDetailsUseCase.invoke(lat,lon,cityId).map {
                 ForecastState(

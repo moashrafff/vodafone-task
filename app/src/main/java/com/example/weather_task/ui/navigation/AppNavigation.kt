@@ -46,7 +46,16 @@ fun AppNavigation(
         composable(route = AppScreens.Search.action) {
             SearchScreen(
                 deviceSizeType = deviceSizeType,
-                connectivityState = connectivityState, onBack = navController::navigateUp
+                connectivityState = connectivityState,
+                onBack = navController::navigateUp,
+                onWeatherDetail = {
+                    navController.navigate(
+                        AppScreens.Details.action.replace(
+                            "{name}",
+                            it
+                        )
+                    )
+                }
             )
         }
         composable(route = AppScreens.Details.action,

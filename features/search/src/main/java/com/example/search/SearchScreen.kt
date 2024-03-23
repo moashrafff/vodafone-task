@@ -1,6 +1,7 @@
 package com.example.search
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,8 @@ import com.example.core.ConnectivityObserver
 import com.example.core.DeviceSizeType
 import com.example.core.components.UiLoader
 import com.example.core.ui.SfDisplayProFontFamily
+import com.example.data.model.CurrentWeatherModel
+import com.example.data.model.LocationModel
 import com.example.search.components.SearchListCard
 import com.example.search.components.SearchScreenSearchBar
 import com.example.search.components.SearchTopBar
@@ -41,8 +44,10 @@ fun SearchScreen(
     deviceSizeType: DeviceSizeType,
     connectivityState: ConnectivityObserver.Status,
     onBack: () -> Unit,
+    onWeatherDetail: (String) -> Unit,
     searchViewModel: SearchViewModel = hiltViewModel(),
-    isDarkTheme: Boolean = isSystemInDarkTheme()
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
+
 ) {
 
     LaunchedEffect(key1 = connectivityState, key2 = searchViewModel.searchQuery.value) {
@@ -54,15 +59,15 @@ fun SearchScreen(
     ) {
         when (deviceSizeType) {
             DeviceSizeType.PORTRAIT -> {
-                SearchScreenPortrait(modifier, searchViewModel = searchViewModel, onBack = onBack)
+                SearchScreenPortrait(modifier, searchViewModel = searchViewModel, onBack = onBack , onWeatherDetail = onWeatherDetail)
             }
 
             DeviceSizeType.LANDSCAPE -> {
-                SearchScreenLandscape(modifier, searchViewModel = searchViewModel)
+                SearchScreenLandscape(modifier, searchViewModel = searchViewModel, onWeatherDetail = onWeatherDetail)
             }
 
             DeviceSizeType.TABLET -> {
-                SearchScreenLandscape(modifier, searchViewModel = searchViewModel)
+                SearchScreenLandscape(modifier, searchViewModel = searchViewModel, onWeatherDetail = onWeatherDetail)
             }
         }
     }
@@ -72,6 +77,7 @@ fun SearchScreen(
 fun SearchScreenPortrait(
     modifier: Modifier = Modifier,
     onBack: () -> Unit,
+    onWeatherDetail: (String) -> Unit,
     searchViewModel: SearchViewModel
 ) {
     val uiState by searchViewModel.uiState.collectAsState()
@@ -113,11 +119,12 @@ fun SearchScreenPortrait(
                 SearchListCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp),
+                        .padding(horizontal = 20.dp)
+                    ,
                     location = uiState.locationList[it],
                     onAdd = {
                         searchViewModel.onLocationAdd(uiState.locationList[it])
-                    }
+                    }, onWeatherDetail = onWeatherDetail
                 )
                 Spacer(modifier = Modifier.height(18.dp))
             }
@@ -131,7 +138,8 @@ fun SearchScreenPortrait(
 @Composable
 fun SearchScreenLandscape(
     modifier: Modifier = Modifier,
-    searchViewModel: SearchViewModel
+    searchViewModel: SearchViewModel,
+    onWeatherDetail: (String) -> Unit,
 ) {
 
     val uiState by searchViewModel.uiState.collectAsState()
@@ -170,7 +178,7 @@ fun SearchScreenLandscape(
                         location = uiState.locationList[it],
                         onAdd = {
                             searchViewModel.onLocationAdd(uiState.locationList[it])
-                        }
+                        }, onWeatherDetail = onWeatherDetail
                     )
                 }
             }

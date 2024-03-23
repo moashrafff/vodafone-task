@@ -35,7 +35,7 @@ class GetCurrentWeatherInformationUseCaseImpl(
             val requests = mutableListOf<Deferred<ResponseResult<CurrentWeatherModel>>>()
             for (i in locations) {
                 coroutineScope {
-                    val result = async { weatherRepository.getCurrentWeather(lat = i.lat , lon = i.lon) }
+                    val result = async { weatherRepository.getCurrentWeather(lat = i.lat , lon = i.lon , shouldSaveLocally = false) }
                     requests.add(result)
                 }
             }

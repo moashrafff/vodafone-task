@@ -85,8 +85,6 @@ class HomeViewModel @Inject constructor(
                         )
                     ) + uiState.value.weather
 
-
-
                     uiState.emit(
                         HomeState(
                             isLoading = true,
