@@ -35,23 +35,21 @@ jobs:
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
-  package:
-    name: Generate APK
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v1
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: expense-manager.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+      - name: Generate version.txt for Hub release
+        run: ./gradlew generateVersionTxt
+      - name: Releasing using Hub
+        uses: valley-fordham/action-release-debugapk@master
