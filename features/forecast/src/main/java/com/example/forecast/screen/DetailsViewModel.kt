@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
@@ -76,7 +78,7 @@ class DetailsViewModel @Inject constructor(
             val lat = separateLatLongFromString(name)?.first ?: 0.0
             val lon = separateLatLongFromString(name)?.second ?: 0.0
 
-            val currentWeather = weatherRepository.getWeatherFromDB("${lat},${lon}")
+            val currentWeather = weatherRepository.getWeatherFromDB("${BigDecimal(lat ?: 0.0).setScale(4, RoundingMode.HALF_UP)},${BigDecimal(lon ?: 0.0).setScale(4, RoundingMode.HALF_UP)}")
 
             getForecastDetailsUseCase.invoke(lat,lon,cityId).map {
                 ForecastState(

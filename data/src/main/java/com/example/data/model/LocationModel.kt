@@ -5,7 +5,12 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.data.dto.LocationDto
 import com.google.gson.Gson
+import java.math.BigDecimal
+import java.math.RoundingMode
 
+
+/// 46.6174128,-64.1090125
+/// 46.6174,-64.109
 @Entity
 data class LocationModel(
     @PrimaryKey
@@ -34,7 +39,7 @@ data class LocationModel(
                 lat = dto?.lat ?: 0.0,
                 lon = dto?.lon ?: 0.0,
                 state = dto?.state.orEmpty(),
-                locName = "${dto?.lat},${dto?.lon}"
+                locName = "${BigDecimal(dto?.lat ?: 0.0).setScale(4, RoundingMode.HALF_UP)},${BigDecimal(dto?.lon ?: 0.0).setScale(4, RoundingMode.HALF_UP)}"
             )
 
     }

@@ -1,5 +1,6 @@
 package com.example.home.usecase.impl
 
+import android.util.Log
 import com.example.data.model.CurrentWeatherModel
 import com.example.data.model.LocationModel
 import com.example.data.repos.CurrentWeatherRepository
@@ -13,6 +14,8 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class GetCurrentWeatherInformationUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher,
@@ -23,12 +26,14 @@ class GetCurrentWeatherInformationUseCaseImpl(
         return flow {
             emit(ResponseResult.Loading)
 
-            val localData = weatherRepository.getWeatherFromDB(locations.map { "${it.lat},${it.lon}" })
+            val localData = weatherRepository.getWeatherFromDB(locations.map { it.locName })
             emit(
                 ResponseResult.LocalData(
                     locations.associateBy(
                         { it },
-                        { loc -> localData.firstOrNull { "${it.coord.lat},${it.coord.lon}" == "${loc.lat},${loc.lon}" } })
+                        { loc -> localData.firstOrNull {
+                            it.locName == loc.locName
+                        } })
                 )
             )
 
@@ -52,7 +57,7 @@ class GetCurrentWeatherInformationUseCaseImpl(
                     results.associateBy(
                         {
                             val location = (it as ResponseResult.Success).data.coord
-                           LocationModel(name = "${location.lat},${location.lon}", country = "" ,lat = location.lat , lon = location.lon , state = "", locName = "${location.lat},${location.lon}" )
+                           LocationModel(name = "${location.lat},${location.lon}", country = "" ,lat = location.lat , lon = location.lon , state = "", locName = "${BigDecimal(location?.lat ?: 0.0).setScale(4, RoundingMode.HALF_UP)},${BigDecimal(location?.lon ?: 0.0).setScale(4, RoundingMode.HALF_UP)}" )
                         },
                         {
                             (it as ResponseResult.Success).data

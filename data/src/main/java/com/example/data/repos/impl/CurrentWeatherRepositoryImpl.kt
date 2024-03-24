@@ -10,12 +10,17 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Named
 
+// 30.0444,31.2357
+// 30.0443879,31.2357257
+
 class CurrentWeatherRepositoryImpl(
     @Named("io") private val ioDispatcher: CoroutineDispatcher,
     private val weatherDao: CurrentWeatherDao,
     private val weatherApi: WeatherService
 ) : CurrentWeatherRepository {
     override suspend fun getWeatherFromDB(name: List<String>): List<CurrentWeatherModel>  = weatherDao.getSavedWeatherByNames(name)
+
+
 
     override suspend fun getWeatherFromDB(name: String): CurrentWeatherModel?  = weatherDao.getSavedWeatherByName(name)
 

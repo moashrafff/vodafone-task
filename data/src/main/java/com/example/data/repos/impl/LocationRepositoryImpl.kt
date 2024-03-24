@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
+import java.math.RoundingMode
 import javax.inject.Named
 
 class LocationRepositoryImpl(
@@ -31,7 +33,7 @@ class LocationRepositoryImpl(
                         lat = res?.lat ?: 0.0,
                         lon = res?.lon ?: 0.0,
                         state = res?.state.orEmpty(),
-                        locName = "${res?.lat},${res?.lon}"
+                        locName = "${BigDecimal(res?.lat ?: 0.0).setScale(4, RoundingMode.HALF_UP)},${BigDecimal(res?.lon ?: 0.0).setScale(4, RoundingMode.HALF_UP)}"
                     )
                 }
             }, isValidResponse = {

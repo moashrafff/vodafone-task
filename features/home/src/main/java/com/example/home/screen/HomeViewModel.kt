@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import javax.inject.Inject
 import javax.inject.Named
 import android.location.Location as AndroidLocation
@@ -44,7 +46,6 @@ class HomeViewModel @Inject constructor(
 
 
     fun init() {
-        Log.e("TAG102", "loadData: " + userLocation)
         loadData()
     }
 
@@ -66,7 +67,6 @@ class HomeViewModel @Inject constructor(
             if (userLocation != null) {
 
                 val result = getCurrentWeatherLocationByUserLocationUseCase.invoke(userLocation!!)
-                Log.e("TAG102", "loadData: " + result)
 
                 if (result is ResponseResult.Success) {
 
@@ -77,7 +77,7 @@ class HomeViewModel @Inject constructor(
                         lat = location.lat,
                         lon = location.lon,
                         state = "",
-                        locName = "${location.lat},${location.lon}"
+                        locName = "${BigDecimal(location.lat ?: 0.0).setScale(4, RoundingMode.HALF_UP)},${BigDecimal(location?.lon ?: 0.0).setScale(4, RoundingMode.HALF_UP)}"
                     )
 
                     val newList = listOf(
@@ -87,6 +87,7 @@ class HomeViewModel @Inject constructor(
                             weather = result.data
                         )
                     ) + uiState.value.weather
+
 
                     uiState.emit(
                         HomeState(
@@ -117,7 +118,8 @@ class HomeViewModel @Inject constructor(
                                 location = w.key,
                                 weather = w.value
                             )
-                        } + uiState.value.weather).distinctBy { it.location.locName }.toSet()
+
+                        } + uiState.value.weather).distinctBy { it.location.locName }
                             .sortedBy { it.location.name }
 
                         is ResponseResult.Success -> (res.data.map { w ->
@@ -127,6 +129,7 @@ class HomeViewModel @Inject constructor(
                             )
                         } + uiState.value.weather).distinctBy { it.location.name }
                             .sortedBy { it.location.name }
+
 
                         else -> uiState.value.weather
                     }

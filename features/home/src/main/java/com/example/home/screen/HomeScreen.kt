@@ -176,6 +176,7 @@ fun HomeScreenPortrait(
             )
         }
         if (!state.isLoading && state.weather.isEmpty()) HomeScreenNoDataView()
+        Log.e("TAG102", "HomeScreenPortrait: " + state.weather )
         if (state.weather.isNotEmpty()) {
             HomeScreenWeatherList(
                 modifier = Modifier.weight(1f),
