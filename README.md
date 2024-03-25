@@ -27,6 +27,7 @@
 - [Hilt](https://dagger.dev/hilt/) (DI)
 - [Coil](https://coil-kt.github.io/coil/) (Image caching)
 - [Work Manager](https://developer.android.com/reference/androidx/work/WorkManager) (Scheduling Notifications for Weather updates)
+- [CI/CD] Github actions
 
 #### Local Persistence
 - [Room DB](https://developer.android.com/training/data-storage/room) (SQLite ORM)
