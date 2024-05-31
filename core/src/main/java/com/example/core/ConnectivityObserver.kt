@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 
 interface ConnectivityObserver {
-
     fun observe(): Flow<Status>
 
     enum class Status {
